@@ -2,6 +2,7 @@ import sys
 from time import sleep
 
 import pygame
+import json
 
 from bullet import Bullet
 from alien import Alien
@@ -208,6 +209,10 @@ def ship_hit(ai_settings, screen, stats, sb, ship, aliens, bullets):
     else:
         stats.game_active = False
         pygame.mouse.set_visible(True)
+
+        #Write highscore to highscore.json
+        with open('highscore.json', 'w') as outfile:
+            json.dump(stats.high_score, outfile)
 
 
 def check_aliens_bottom(ai_settings, screen, stats, sb, ship, aliens, bullets):
